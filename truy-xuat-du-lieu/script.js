@@ -49,7 +49,7 @@ function loadProductData() {
   showLoading(true);
   
   // Call API
-  fetch(`${API_BASE_URL}/mobile/products/trace/${productCode}`)
+  fetch(`${API_BASE_URL}/products/trace/${productCode}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Không tìm thấy sản phẩm');
