@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "/truy-xuat-du-lieu/*"
+  to = "/truy-xuat-du-lieu/index.html"
+  status = 200
+  force = false
+
+# Optional: Redirect root to a default page
+# [[redirects]]
+#   from = "/"
+#   to = "/truy-xuat-du-lieu/"
+#   status = 200
