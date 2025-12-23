@@ -1,3 +1,14 @@
+# Netlify Functions configuration
+[functions]
+  directory = "netlify/functions"
+
+# Proxy API requests through Netlify Function
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/proxy/api/:splat"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/truy-xuat-du-lieu/*"
   to = "/truy-xuat-du-lieu/index.html"

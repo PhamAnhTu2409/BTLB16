@@ -1,5 +1,6 @@
-// Configuration - Update this with your actual API endpoint
-const API_BASE_URL = 'https://45.118.147.92:9223/api'
+// Configuration - API calls go through Netlify Function proxy
+// This bypasses SSL certificate issues on client devices
+const API_BASE_URL = '/api'
 
 // Vietnamese labels
 const labels = {
