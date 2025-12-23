@@ -257,14 +257,20 @@ function isAndroidDevice() {
 }
 
 function showAndroidActionBar() {
-  if (isAndroidDevice()) {
-    const actionBar = document.getElementById('androidActionBar');
-    actionBar.style.display = 'block';
-    document.body.classList.add('has-android-bar');
-    
-    // Add event listeners for buttons
-    setupActionBarButtons();
-  }
+  if (!isAndroidDevice()) return;
+
+  const actionBar = document.getElementById('androidActionBar');
+  // Ensure buttons are wired before showing
+  setupActionBarButtons();
+
+  // display then animate into view
+  actionBar.style.display = 'block';
+  document.body.classList.add('has-android-bar');
+
+  // allow CSS transition to run
+  requestAnimationFrame(() => {
+    actionBar.classList.add('visible');
+  });
 }
 
 function setupActionBarButtons() {
