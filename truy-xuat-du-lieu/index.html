@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hồ Sơ Truy Xuất Nguồn Gốc</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Loading State -->
+  <div id="loading" class="container" style="text-align: center; padding: 50px; display: none;">
+    <p>Đang tải dữ liệu sản phẩm...</p>
+  </div>
+
+  <!-- Error State -->
+  <div id="error" class="container" style="text-align: center; padding: 50px; display: none;">
+    <h2>Không tìm thấy sản phẩm</h2>
+    <p>Mã sản phẩm không hợp lệ hoặc không tồn tại trong hệ thống.</p>
+  </div>
+
+  <!-- Product Profile Display -->
+  <div id="productDisplay" class="container" style="display: none;">
+    <!-- Header Section -->
+    <div class="page-card">
+      <div class="logo-container">
+        <img src="../assets/images/LogoBLB16-Login-.png" alt="Logo" class="logo" />
+      </div>
+      <h1 id="pageTitle">HỒ SƠ TRUY XUẤT NGUỒN GỐC<br><span id="productName"></span></h1>
+
+      <div class="header-grid">
+        <div class="basic-info">
+          <div class="table-responsive">
+            <table id="productInfoTable">
+              <!-- Product information will be dynamically inserted here -->
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

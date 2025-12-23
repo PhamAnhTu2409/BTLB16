@@ -1,0 +1,263 @@
+/* --- RESET & BASE STYLES --- */
+:root {
+  --primary-color: #10b981; /* Green 500 - match system */
+  --accent-color: #22c55e;  /* Green 400 */
+  --bg-color: #f1f5f9;      /* Match global */
+  --card-bg: #ffffff;
+  --text-color: #334155;    /* Match global */
+  --border-radius: 8px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+body {
+  font-family: "Inter", sans-serif, "Segoe UI", Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 16px 12px;
+  font-size: 16px;
+}
+
+/* --- LAYOUT CONTAINER --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* --- PAGE CARD STYLE --- */
+.page-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 20px;
+  border-top: 3px solid var(--primary-color);
+  position: relative;
+}
+
+/* --- LOGO --- */
+.logo-container {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+}
+
+/* --- TYPOGRAPHY --- */
+h1 {
+  color: var(--primary-color);
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* --- TABLES --- */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 100%;
+  font-size: 13px;
+}
+
+th, td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+}
+
+th:last-child, td:last-child {
+  border-right: none;
+}
+
+th {
+  background-color: #f9fafb;
+  color: var(--primary-color);
+  font-weight: 600;
+  white-space: nowrap;
+  font-size: 13px;
+  width: 30%;
+}
+
+/* Table headers match value backgrounds */
+tr:nth-child(odd) th {
+  background-color: transparent;
+}
+
+tr:nth-child(even) th {
+  background-color: #f9fafb;
+}
+
+td {
+  word-break: break-word;
+}
+
+tr:last-child td { 
+  border-bottom: none; 
+}
+
+tr:nth-child(even) { 
+  background-color: #f9fafb; 
+}
+
+/* --- HEADER GRID & QR --- */
+.header-grid {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.header-grid .basic-info {
+  flex: 1 1 0%;
+}
+
+/* --- TOAST NOTIFICATION --- */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ef4444;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: none;
+  z-index: 1000;
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.toast.show {
+  display: block;
+  animation: slideIn 0.3s ease-out;
+}
+
+.toast.success {
+  background-color: #10b981;
+}
+
+.toast.error {
+  background-color: #ef4444;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .page-card {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .logo {
+    width: 100%;
+    height: auto;
+  }
+
+  th {
+    width: auto;
+  }
+
+  th, td {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
+  }
+  
+  .container {
+    padding: 0 8px;
+  }
+  
+  .page-card {
+    padding: 12px;
+  }
+  
+  .logo {
+    width: 100%;
+    height: auto;
+  }
+  
+  th {
+    width: auto;
+  }
+
+  th, td {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .toast {
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+  }
+}
+
+/* --- PRINT STYLES --- */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  .page-card {
+    box-shadow: none;
+    border: none;
+    page-break-after: always;
+    padding: 20px 0;
+  }
+
+  .toast {
+    display: none !important;
+  }
+}
