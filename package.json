@@ -1,0 +1,8 @@
+{
+  "name": "btlb16-traceability",
+  "version": "1.0.0",
+  "description": "Product traceability system",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}
