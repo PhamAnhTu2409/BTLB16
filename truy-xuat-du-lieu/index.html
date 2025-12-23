@@ -42,6 +42,15 @@
   <!-- Toast notification -->
   <div id="toast" class="toast"></div>
 
+  <!-- Error Popup -->
+  <div id="errorPopup" class="popup-overlay" style="display: none;">
+    <div class="popup-content">
+      <h3>Lỗi Chi Tiết</h3>
+      <pre id="errorDetails"></pre>
+      <button onclick="closeErrorPopup()">Đóng</button>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

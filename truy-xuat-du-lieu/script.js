@@ -73,6 +73,7 @@ function loadProductData() {
       showLoading(false);
       showError(error.message || 'Không tìm thấy sản phẩm với mã này');
       showToast('Không tìm thấy sản phẩm với mã này', 'error');
+      showErrorPopup(error);
     });
 }
 
@@ -216,4 +217,31 @@ function normalizeServerResponse(obj) {
   }
   
   return pascalToCamel(obj);
+}
+
+// Show error popup with detailed error information
+function showErrorPopup(error) {
+  const errorDetails = document.getElementById('errorDetails');
+  let details = `Lỗi: ${error.message || 'Unknown error'}\n\n`;
+  
+  if (error.stack) {
+    details += `Stack Trace:\n${error.stack}\n\n`;
+  }
+  
+  details += `URL: ${window.location.href}\n`;
+  details += `Product Code: ${productCode}\n`;
+  details += `API URL: ${API_BASE_URL}/products/trace/${productCode}\n`;
+  details += `Timestamp: ${new Date().toISOString()}\n`;
+  
+  // Add browser info
+  details += `User Agent: ${navigator.userAgent}\n`;
+  details += `Platform: ${navigator.platform}\n`;
+  
+  errorDetails.textContent = details;
+  document.getElementById('errorPopup').style.display = 'flex';
+}
+
+// Close error popup
+function closeErrorPopup() {
+  document.getElementById('errorPopup').style.display = 'none';
 }
