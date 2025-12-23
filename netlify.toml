@@ -9,15 +9,3 @@
 #   from = "/"
 #   to = "/truy-xuat-du-lieu/"
 #   status = 200
-
-# Build configuration for Netlify Functions
-[build]
-  functions = "netlify/functions"
-
-# Headers for CORS (if needed)
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
-    Access-Control-Allow-Headers = "Content-Type"

@@ -1,12 +1,5 @@
 // Configuration - Update this with your actual API endpoint
-// Direct API (requires CORS to be configured on backend)
-// const API_BASE_URL = 'https://45.118.147.92:9222/api'
-
-// Use Netlify Function as proxy to bypass CORS (recommended for production)
-const USE_NETLIFY_PROXY = true;
-const API_BASE_URL = USE_NETLIFY_PROXY 
-  ? '/.netlify/functions/api-proxy'  // Netlify Function proxy
-  : 'https://45.118.147.92:9222/api'; // Direct API
+const API_BASE_URL = 'https://45.118.147.92:9222/api'
 
 // Vietnamese labels
 const labels = {
