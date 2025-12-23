@@ -268,44 +268,24 @@ function showAndroidActionBar() {
 }
 
 function setupActionBarButtons() {
-  // View Details button - could link to detailed page or expand current info
+  // APK download URL - TODO: Replace with actual hosting URL
+  // Upload APK to Google Drive, Dropbox, or GitHub Releases
+  const apkUrl = 'https://example.com/BTLB16-v1.0.0.apk'; // Replace with actual URL
+  
+  // Function to download APK
+  function downloadApk() {
+    // Show downloading message
+    showToast('Đang tải xuống ứng dụng...', 'success');
+    
+    // Open download link
+    window.open(apkUrl, '_blank');
+  }
+  
+  // View Details button - also downloads APK
   const viewDetailsBtn = document.getElementById('viewDetailsBtn');
-  viewDetailsBtn.addEventListener('click', function() {
-    // For now, scroll to top or show more details
-    // You can customize this to link to a detailed page
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    // Show toast notification
-    showToast('Đang mở trang chi tiết...', 'info');
-    
-    // TODO: Replace with actual detailed page URL
-    // window.location.href = `/detailed-trace/${productCode}`;
-  });
+  viewDetailsBtn.addEventListener('click', downloadApk);
   
   // Download APK button
   const downloadApkBtn = document.getElementById('downloadApkBtn');
-  downloadApkBtn.addEventListener('click', function() {
-    const apkUrl = '../assets/apk/BTLB16-v1.0.0.apk';
-    
-    // Create download link
-    const link = document.createElement('a');
-    link.href = apkUrl;
-    link.download = 'BTLB16-v1.0.0.apk';
-    link.style.display = 'none';
-    
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    // Show success message
-    showToast('Đang tải xuống ứng dụng...', 'success');
-  });
+  downloadApkBtn.addEventListener('click', downloadApk);
 }
-
-// Initialize Android features when page loads
-document.addEventListener('DOMContentLoaded', function() {
-  // ... existing code ...
-  
-  // Show Android action bar if on Android device
-  showAndroidActionBar();
-});
