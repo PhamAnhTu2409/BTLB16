@@ -91,6 +91,9 @@ function displayProductData() {
   
   // Build product information table
   buildProductInfoTable();
+  
+  // Show Android action bar if on Android device
+  showAndroidActionBar();
 }
 
 // Build the product information table
@@ -246,3 +249,63 @@ function showErrorPopup(error) {
 function closeErrorPopup() {
   document.getElementById('errorPopup').style.display = 'none';
 }
+
+// Android device detection and action bar
+function isAndroidDevice() {
+  const userAgent = navigator.userAgent.toLowerCase();
+  return /android/.test(userAgent);
+}
+
+function showAndroidActionBar() {
+  if (isAndroidDevice()) {
+    const actionBar = document.getElementById('androidActionBar');
+    actionBar.style.display = 'block';
+    document.body.classList.add('has-android-bar');
+    
+    // Add event listeners for buttons
+    setupActionBarButtons();
+  }
+}
+
+function setupActionBarButtons() {
+  // View Details button - could link to detailed page or expand current info
+  const viewDetailsBtn = document.getElementById('viewDetailsBtn');
+  viewDetailsBtn.addEventListener('click', function() {
+    // For now, scroll to top or show more details
+    // You can customize this to link to a detailed page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Show toast notification
+    showToast('Đang mở trang chi tiết...', 'info');
+    
+    // TODO: Replace with actual detailed page URL
+    // window.location.href = `/detailed-trace/${productCode}`;
+  });
+  
+  // Download APK button
+  const downloadApkBtn = document.getElementById('downloadApkBtn');
+  downloadApkBtn.addEventListener('click', function() {
+    const apkUrl = '../assets/apk/BTLB16-v1.0.0.apk';
+    
+    // Create download link
+    const link = document.createElement('a');
+    link.href = apkUrl;
+    link.download = 'BTLB16-v1.0.0.apk';
+    link.style.display = 'none';
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Show success message
+    showToast('Đang tải xuống ứng dụng...', 'success');
+  });
+}
+
+// Initialize Android features when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  // ... existing code ...
+  
+  // Show Android action bar if on Android device
+  showAndroidActionBar();
+});
