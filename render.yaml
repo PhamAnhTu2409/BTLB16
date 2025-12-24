@@ -1,0 +1,15 @@
+services:
+  # Static site for frontend
+  - type: web
+    name: btlb16-frontend
+    runtime: static
+    buildCommand: echo "No build needed"
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://btlb16-proxy.onrender.com/*
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache

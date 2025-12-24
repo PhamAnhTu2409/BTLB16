@@ -1,0 +1,17 @@
+{
+  "name": "btlb16-api-proxy",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker proxy cho BTLB16 - bypass SSL certificate issues",
+  "main": "worker.js",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "keywords": ["cloudflare", "worker", "proxy", "btlb16"],
+  "author": "BTLB16 Team",
+  "license": "MIT"
+}

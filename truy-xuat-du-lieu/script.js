@@ -1,6 +1,7 @@
-// Configuration - API calls direct to backend server 45.118.147.92 (include /api prefix)
-// Ensure backend allows CORS from btlb16.web.app
-const API_BASE_URL = 'https://45.118.147.92:9223/api'
+// Configuration - API calls through Render.com proxy (bypass SSL issues)
+// Sau khi deploy Render proxy, thay URL bên dưới
+// Format: https://YOUR-RENDER-SERVICE.onrender.com/api
+const API_BASE_URL = 'https://btlb16-proxy.onrender.com/api'
 
 // Vietnamese labels
 const labels = {

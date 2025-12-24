@@ -1,0 +1,20 @@
+# Cấu hình Cloudflare Worker cho BTLB16 API Proxy
+# Tài liệu: https://developers.cloudflare.com/workers/wrangler/configuration/
+
+name = "btlb16-api-proxy"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Account ID - sẽ được tự động lấy khi chạy wrangler login
+# account_id = "your-account-id"
+
+# ===== TÙY CHỌN NÂNG CAO =====
+
+# Nếu bạn có custom domain, bỏ comment và điền:
+# routes = [
+#   { pattern = "api.yourdomain.com/*", zone_name = "yourdomain.com" }
+# ]
+
+# Biến môi trường (nếu cần)
+# [vars]
+# BACKEND_URL = "https://45.118.147.92:9223"
