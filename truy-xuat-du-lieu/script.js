@@ -1,6 +1,6 @@
-// Configuration - API calls direct to backend server 45.118.147.92
+// Configuration - API calls direct to backend server 45.118.147.92 (no /api prefix)
 // Ensure backend allows CORS from btlb16.web.app
-const API_BASE_URL = 'https://45.118.147.92:9223/api'
+const API_BASE_URL = 'https://45.118.147.92:9223'
 
 // Vietnamese labels
 const labels = {

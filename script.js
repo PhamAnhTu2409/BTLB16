@@ -1,5 +1,5 @@
-// Configuration - Update this with your actual API endpoint
-const API_BASE_URL = 'http://45.118.147.92:9111/api'
+// Configuration - Update this with your actual API endpoint (no /api suffix)
+const API_BASE_URL = 'https://45.118.147.92:9223'
 
 // Vietnamese labels
 const labels = {
