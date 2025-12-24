@@ -276,7 +276,7 @@ function showAndroidActionBar() {
 function setupActionBarButtons() {
   // APK download URL - TODO: Replace with actual hosting URL
   // Upload APK to Google Drive, Dropbox, or GitHub Releases
-  const apkUrl = 'https://example.com/BTLB16-v1.0.0.apk'; // Replace with actual URL
+  const apkUrl = 'https://github.com/PhamAnhTu2409/BTLB16/releases/download/apk_mobile/BTLB16-v1.0.0.apk';
 
   // Idempotent listener attach: mark buttons once bound
   function bindOnce(el, event, fn) {
