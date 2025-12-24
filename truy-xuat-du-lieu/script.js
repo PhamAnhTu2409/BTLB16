@@ -1,6 +1,6 @@
-// Configuration - API calls go through Netlify Function proxy
-// This bypasses SSL certificate issues on client devices
-const API_BASE_URL = '/api'
+// Configuration - API calls direct to backend server 45.118.147.92
+// Ensure backend allows CORS from btlb16.web.app
+const API_BASE_URL = 'https://45.118.147.92:9223/api'
 
 // Vietnamese labels
 const labels = {
