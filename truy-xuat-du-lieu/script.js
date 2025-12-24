@@ -277,21 +277,57 @@ function setupActionBarButtons() {
   // APK download URL - TODO: Replace with actual hosting URL
   // Upload APK to Google Drive, Dropbox, or GitHub Releases
   const apkUrl = 'https://example.com/BTLB16-v1.0.0.apk'; // Replace with actual URL
-  
-  // Function to download APK
-  function downloadApk() {
-    // Show downloading message
-    showToast('Đang tải xuống ứng dụng...', 'success');
-    
-    // Open download link
-    window.open(apkUrl, '_blank');
+
+  // Idempotent listener attach: mark buttons once bound
+  function bindOnce(el, event, fn) {
+    if (!el) return;
+    if (el.dataset.bound === 'true') return;
+    el.addEventListener(event, fn);
+    el.dataset.bound = 'true';
   }
-  
-  // View Details button - also downloads APK
+
+  // Function to trigger/download APK robustly
+  function downloadApk() {
+    showToast('Đang tải xuống ứng dụng...', 'info');
+
+    try {
+      // If URL looks same-origin or ends with .apk, create anchor with download attribute
+      const isApk = /\.apk(\?|$)/i.test(apkUrl);
+      const isSameOrigin = (() => {
+        try {
+          const u = new URL(apkUrl, window.location.href);
+          return u.origin === window.location.origin;
+        } catch (e) {
+          return false;
+        }
+      })();
+
+      if (isApk && (isSameOrigin || apkUrl.startsWith('/'))) {
+        const a = document.createElement('a');
+        a.href = apkUrl;
+        a.download = apkUrl.split('/').pop() || 'app.apk';
+        a.rel = 'noopener noreferrer';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } else {
+        // Cross-origin or unknown: open in new tab/window so hosting can prompt download
+        window.open(apkUrl, '_blank', 'noopener');
+      }
+
+      showToast('Yêu cầu tải xuống đã bắt đầu.', 'success');
+    } catch (err) {
+      console.error('Download APK failed', err);
+      showToast('Không thể tải APK. Vui lòng thử lại.', 'error');
+      // As last resort, open link
+      window.open(apkUrl, '_blank', 'noopener');
+    }
+  }
+
+  // Attach handlers (idempotent)
   const viewDetailsBtn = document.getElementById('viewDetailsBtn');
-  viewDetailsBtn.addEventListener('click', downloadApk);
-  
-  // Download APK button
   const downloadApkBtn = document.getElementById('downloadApkBtn');
-  downloadApkBtn.addEventListener('click', downloadApk);
+  bindOnce(viewDetailsBtn, 'click', downloadApk);
+  bindOnce(downloadApkBtn, 'click', downloadApk);
 }
