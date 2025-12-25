@@ -257,12 +257,25 @@ function isAndroidDevice() {
   return /android/.test(userAgent);
 }
 
+function isIOSDevice() {
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  // iPad on iOS 13+ can report as MacIntel with touch support
+  const isiPadTouch = (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  return /iPad|iPhone|iPod/.test(ua) || isiPadTouch;
+}
+
 function showAndroidActionBar() {
-  if (!isAndroidDevice()) return;
+  // Show action bar on Android or iOS. On iOS the buttons are intentionally no-ops.
+  if (!isAndroidDevice() && !isIOSDevice()) return;
 
   const actionBar = document.getElementById('androidActionBar');
+
   // Ensure buttons are wired before showing
-  setupActionBarButtons();
+  if (isAndroidDevice()) {
+    setupActionBarButtons();
+  } else if (isIOSDevice()) {
+    setupActionBarButtonsIOS();
+  }
 
   // display then animate into view
   actionBar.style.display = 'block';
@@ -272,6 +285,26 @@ function showAndroidActionBar() {
   requestAnimationFrame(() => {
     actionBar.classList.add('visible');
   });
+}
+
+// On iOS we intentionally bind inert handlers so taps do nothing and no notifications show
+function setupActionBarButtonsIOS() {
+  const viewDetailsBtn = document.getElementById('viewDetailsBtn');
+  const downloadApkBtn = document.getElementById('downloadApkBtn');
+
+  function bindOnceNoop(el, event) {
+    if (!el) return;
+    if (el.dataset.bound === 'true-ios') return;
+    el.addEventListener(event, function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      // intentionally do nothing (no toast, no navigation)
+    });
+    el.dataset.bound = 'true-ios';
+  }
+
+  bindOnceNoop(viewDetailsBtn, 'click');
+  bindOnceNoop(downloadApkBtn, 'click');
 }
 
 function setupActionBarButtons() {
