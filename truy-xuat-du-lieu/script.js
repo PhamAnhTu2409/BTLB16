@@ -3,6 +3,10 @@
 // Format: https://YOUR-RENDER-SERVICE.onrender.com/api
 const API_BASE_URL = 'https://btlb16-proxy.onrender.com/api'
 
+// APK Download URL - Thay đổi URL này khi có phiên bản mới
+// Upload APK lên GitHub Releases, Google Drive, hoặc Dropbox
+const APK_DOWNLOAD_URL = 'https://github.com/PhamAnhTu2409/BTLB16/releases/download/v1.1.1/BTLB16-v1.1.1-Android.apk'
+
 // Vietnamese labels
 const labels = {
   loadingMessage: 'Đang tải dữ liệu sản phẩm...',
@@ -308,9 +312,8 @@ function setupActionBarButtonsIOS() {
 }
 
 function setupActionBarButtons() {
-  // APK download URL - TODO: Replace with actual hosting URL
-  // Upload APK to Google Drive, Dropbox, or GitHub Releases
-  const apkUrl = 'https://github.com/PhamAnhTu2409/BTLB16/releases/download/apk_mobile/BTLB16-v1.0.0.apk';
+  // Sử dụng biến cấu hình từ đầu file
+  const apkUrl = APK_DOWNLOAD_URL;
 
   // Idempotent listener attach: mark buttons once bound
   function bindOnce(el, event, fn) {
