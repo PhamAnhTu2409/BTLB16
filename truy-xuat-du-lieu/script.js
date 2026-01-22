@@ -125,7 +125,16 @@ function buildProductInfoTable() {
     },
     {
       label: labels.moTa,
+      key: 'moTa',
       value: productData.thongTinSanPham?.moTa || ''
+    },
+    {
+      label: 'Ngày sản xuất',
+      value: formatDate(productData.thongTinSanPham?.ngaySanXuat)
+    },
+    {
+      label: 'Hạn sử dụng',
+      value: formatDate(productData.thongTinSanPham?.hanSuDung)
     },
     {
       label: 'Sản phẩm thuộc',
@@ -142,7 +151,12 @@ function buildProductInfoTable() {
     th.textContent = row.label;
     
     const td = document.createElement('td');
-    td.textContent = row.value;
+    // If the row contains HTML content (moTa), render as HTML
+    if (row.key === 'moTa') {
+      td.innerHTML = row.value || '';
+    } else {
+      td.textContent = row.value;
+    }
     
     tr.appendChild(th);
     tr.appendChild(td);
