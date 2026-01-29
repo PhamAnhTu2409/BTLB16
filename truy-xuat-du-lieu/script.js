@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function loadProductData() {
   showLoading(true);
   
-  // Call API
-  fetch(`${API_BASE_URL}/products/trace/${productCode}`)
+  // Call API truy-xuat (API đơn giản cho trang truy xuất nguồn gốc)
+  fetch(`${API_BASE_URL}/products/truy-xuat/${productCode}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Không tìm thấy sản phẩm');
