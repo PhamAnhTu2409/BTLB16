@@ -3,7 +3,7 @@
     "source": "functions"
   },
   "hosting": {
-    "public": ".",
+    "public": "truy-xuat-du-lieu",
     "ignore": [
       "firebase.json",
       "**/.*",
