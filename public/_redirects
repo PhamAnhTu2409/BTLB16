@@ -1,0 +1,5 @@
+# Redirect root to truy-xuat-du-lieu (optional, remove if you want different homepage)
+# /   /truy-xuat-du-lieu/  200
+
+# Rewrite all truy-xuat-du-lieu URLs to index.html (for path-based routing)
+/truy-xuat-du-lieu/*  /truy-xuat-du-lieu/index.html  200

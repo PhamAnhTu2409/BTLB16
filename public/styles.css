@@ -1,0 +1,479 @@
+/* --- RESET & BASE STYLES --- */
+:root {
+  --primary-color: #10b981; /* Green 500 - match system */
+  --accent-color: #22c55e;  /* Green 400 */
+  --bg-color: #f1f5f9;      /* Match global */
+  --card-bg: #ffffff;
+  --text-color: #334155;    /* Match global */
+  --border-radius: 8px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+body {
+  font-family: "Inter", sans-serif, "Segoe UI", Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 16px 12px;
+  font-size: 16px;
+}
+
+/* --- LAYOUT CONTAINER --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* --- PAGE CARD STYLE --- */
+.page-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 20px;
+  border-top: 3px solid var(--primary-color);
+  position: relative;
+}
+
+/* --- LOGO --- */
+.logo-container {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+}
+
+/* --- TYPOGRAPHY --- */
+h1 {
+  color: var(--primary-color);
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* --- TABLES --- */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 100%;
+  font-size: 13px;
+}
+
+th, td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+}
+
+th:last-child, td:last-child {
+  border-right: none;
+}
+
+th {
+  background-color: #f9fafb;
+  color: var(--primary-color);
+  font-weight: 600;
+  white-space: nowrap;
+  font-size: 13px;
+  width: 30%;
+}
+
+/* Table headers match value backgrounds */
+tr:nth-child(odd) th {
+  background-color: transparent;
+}
+
+tr:nth-child(even) th {
+  background-color: #f9fafb;
+}
+
+td {
+  word-break: break-word;
+}
+
+tr:last-child td { 
+  border-bottom: none; 
+}
+
+tr:nth-child(even) { 
+  background-color: #f9fafb; 
+}
+
+/* --- HEADER GRID & QR --- */
+.header-grid {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.header-grid .basic-info {
+  flex: 1 1 0%;
+}
+
+/* --- TOAST NOTIFICATION --- */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ef4444;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: none;
+  z-index: 1000;
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.toast.show {
+  display: block;
+  animation: slideIn 0.3s ease-out;
+}
+
+.toast.success {
+  background-color: #10b981;
+}
+
+.toast.error {
+  background-color: #ef4444;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .page-card {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .logo {
+    width: 100%;
+    height: auto;
+  }
+
+  th {
+    width: auto;
+  }
+
+  th, td {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
+  }
+  
+  .container {
+    padding: 0 8px;
+  }
+  
+  .page-card {
+    padding: 12px;
+  }
+  
+  .logo {
+    width: 100%;
+    height: auto;
+  }
+  
+  th {
+    width: auto;
+  }
+
+  th, td {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .toast {
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+  }
+}
+
+/* --- PRINT STYLES --- */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  .page-card {
+    box-shadow: none;
+    border: none;
+    page-break-after: always;
+    padding: 20px 0;
+  }
+
+  .toast {
+    display: none !important;
+  }
+}
+
+/* --- ERROR POPUP --- */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.popup-content h3 {
+  margin-bottom: 10px;
+  color: #dc2626;
+}
+
+.popup-content pre {
+  background: #f3f4f6;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.popup-content button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup-content button:hover {
+  background: #b91c1c;
+}
+
+/* --- ANDROID ACTION BAR --- */
+.android-action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card-bg);
+  border-top: 2px solid var(--primary-color);
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+  padding: 12px 16px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  /* start hidden for animation */
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 320ms cubic-bezier(.2,.8,.2,1), opacity 320ms ease;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 8px 10px; /* smaller padding */
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  min-height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.details-btn {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--primary-color);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+}
+
+.details-btn:hover {
+  background: rgba(16, 185, 129, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+  border-color: var(--primary-color);
+}
+
+.download-btn {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: white;
+  border: 2px solid var(--primary-color);
+}
+
+.download-btn:hover {
+  background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-text {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.btn-subtext {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.9;
+  line-height: 1;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .android-action-bar {
+    padding: 8px 10px;
+  }
+
+  .action-buttons {
+    gap: 8px;
+  }
+
+  .action-btn {
+    padding: 8px 10px;
+    min-height: 40px;
+  }
+
+  .btn-text {
+    font-size: 13px;
+  }
+
+  .btn-subtext {
+    font-size: 11px;
+  }
+}
+
+/* Add padding to body when action bar is visible */
+body.has-android-bar {
+  padding-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+  body.has-android-bar {
+    padding-bottom: 66px;
+  }
+}
+
+/* Visible state - slide up */
+.android-action-bar.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Slight lift animation for buttons when bar appears */
+.android-action-bar.visible .action-btn {
+  animation: btnEntrance 360ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes btnEntrance {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Loading spinner */
+#loading .loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 4px solid rgba(0,0,0,0.08);
+  border-top-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+  box-shadow: 0 2px 6px rgba(16,185,129,0.08);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 480px) {
+  .loading-spinner {
+    width: 36px;
+    height: 36px;
+    border-width: 3px;
+  }
+}
